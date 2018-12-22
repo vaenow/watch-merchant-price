@@ -19,10 +19,12 @@ async function watchOtcList(watchList) {
 
         const basePrice = getBasePrice(priceList, symbol)
         
-        userList.forEach(({userName, price, maxTradeLimit}) => {
+        userList.forEach(({userName, price, maxTradeLimit}, j) => {
             if (userName === '诚信兜兜') {
-                userName = chalk.magenta(userName)
+                userName = chalk.magenta(`【${userName}】`)
             }
+            if (j >= 8) return
+            
             console.log(`${diff(basePrice, price)}  ${price}  ${maxTradeLimit}  ${userName}`)    
         })
     })
