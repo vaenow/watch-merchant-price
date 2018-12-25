@@ -1,7 +1,7 @@
 
 
 const { 
-    getOtcPriceList, getMarketPrice, diff, logtable 
+    getOtcPriceList, getMarketPrice, diff, logtable, delay
 } = require('./utils')
 
 async function watchUsdxPrice(list = []) {

@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const moment = require('moment')
 
 const { 
     getBasePriceList, clearScreen,
@@ -24,11 +25,13 @@ async function watchOtcList(watchList) {
                 userName = chalk.magenta(`【${userName}】`)
             }
             if (j >= 8) return
-            
+
             console.log(`${diff(basePrice, price)}  ${price}  ${maxTradeLimit}  ${userName}`)    
         })
     })
 
+    console.log()
+    console.log(moment().format('YYYY-MM-DD HH:mm:ss'))
 }
 
 watchOtcList([
