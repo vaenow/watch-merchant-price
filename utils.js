@@ -4,6 +4,7 @@ var Table = require('cli-table2')
 const TRADE_MARKET = 'https://otc-api.hbg.com/v1/data/trade-market?country=37&currency=CURRENCY&payMethod=0&currPage=1&coinId=COIN_ID&tradeType=ACTION&blockType=general&online=1'
 const CONFIG_LIST = 'https://otc-api.huobi.pro/v1/data/config-list?type=price,time'
 const MARKET_DATA = 'https://api.huobipro.com/market/detail/merged?symbol=SYMBOL_PAIR'
+const RATE_LIST = 'https://www.huobi.co/-/x/general/exchange_rate/list'
 const SYMBOL = {
     BTC: { i: 0, currency: 1, coinId: 1},
     EOS: { i: 75, currency: 1, coinId: 5},
@@ -94,6 +95,14 @@ function clearScreen() {
     process.stdout.write('\033c');
 };
 
+async function getRateCny() {
+    return (await fetch(RATE_LIST)).data.find(v => v.name === 'usd_cny').rate
+}
+
+async function fetch(url) {
+    return (await axios.get(url)).data
+}
+
 module.exports = {
     diff,
     delay,
@@ -103,4 +112,5 @@ module.exports = {
     getBasePriceList,
     getMarketPrice,
     getOtcPriceList,
+    getRateCny,
 }
