@@ -8,7 +8,10 @@ const {
   getRateCny,
 } = require('./utils')
 
-const { URL_DING } = process.env
+const {
+  URL_DING,
+  WATCH_LIST,
+} = process.env
 
 async function watchOtcList(watchList) {
 
@@ -76,15 +79,12 @@ async function ding(content) {
   }
 }
 
-watchOtcList(_.orderBy([
-  // {symbol:'ht', action: 'sell'},
-  // {symbol:'ht', action: 'buy'},
-  // {symbol:'eos', action: 'sell'},
-  // {symbol:'eos', action: 'buy'},
-  { symbol: 'btc', action: 'sell' },
-  { symbol: 'btc', action: 'buy' },
-  { symbol: 'eth', action: 'sell' },
-  { symbol: 'eth', action: 'buy' },
-  { symbol: 'usdt', action: 'sell' },
-  { symbol: 'usdt', action: 'buy' },
-], ['symbol', 'action'], ['asc', 'desc']))
+watchOtcList(_.orderBy(
+  JSON.parse(WATCH_LIST)
+    // [{ symbol: 'btc', action: 'sell' },
+    // { symbol: 'btc', action: 'buy' },
+    // { symbol: 'eth', action: 'sell' },
+    // { symbol: 'eth', action: 'buy' },
+    // { symbol: 'usdt', action: 'sell' },
+    // { symbol: 'usdt', action: 'buy' }]
+  , ['symbol', 'action'], ['asc', 'desc']))

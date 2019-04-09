@@ -1,0 +1,7 @@
+{
+  "appId": 3059,
+  "type": "cronjob",
+  "name": "otchb-call-cron",
+  "group": "luowen",
+  "version": "1.0.0"
+}

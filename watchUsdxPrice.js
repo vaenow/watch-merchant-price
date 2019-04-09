@@ -28,14 +28,15 @@ async function watchUsdxPrice(list = []) {
 
     // retList.forEach(v => console.log(JSON.stringify(v)))
     logtable(retList)
-    setInterval(async () => await watchUsdxPrice(list), 1.5e4)
+    setInterval(async () => await watchUsdxPrice(list), 20e3)
     return retList
 }
 
 watchUsdxPrice([
     // 	{marketPrice: 3921, from:'usdt', to: 'btc'},
     // 	{marketPrice: 105, from:'usdt', to: 'eth'},
-    { from: 'usdt' },
-    { from: 'husd' },
+    { from: 'usdt', to: 'ht'  },
+    // { from: 'husd', to: 'ht'  },
     { from: 'usdt', to: 'eos' },
+    // { from: 'husd', to: 'eos' },
 ])

@@ -1,0 +1,18 @@
+stages:
+  - build
+
+job_build_release:
+  stage: build
+  image: gitlab/dind
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_REF_SLUG}
+    policy: pull
+  only:
+    - /^release.*$/
+  script:
+    - rm -f .env
+    - docker build -t otchb-call-cron:1.0.0 .
+    - docker login --username=tik-admin@tik registry.cn-hangzhou.aliyuncs.com -p g423QuHLvqrRTY37
+    - docker tag otchb-call-cron:1.0.0 registry.cn-hangzhou.aliyuncs.com/tik/luowen-otchb-call-cron:1.0.0
+    - docker push registry.cn-hangzhou.aliyuncs.com/tik/luowen-otchb-call-cron:1.0.0
