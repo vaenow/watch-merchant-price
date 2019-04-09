@@ -43,6 +43,8 @@ async function getOtcPriceList(symbol, action) {
 }
 
 async function getMarketPrice(symbolPair) {
+    if (symbolPair === 'usdtusdt') return 1
+
     const url = MARKET_DATA.replace(/SYMBOL_PAIR/, symbolPair.toLowerCase())
     const ret = (await axios.get(url)).data
     return ret.tick.ask[0]
@@ -61,7 +63,7 @@ function delay(timeout = 2 * 1000) {
 }
 
 function logtable(list) {
-    
+
     const head = Object.keys(list[0])
     // instantiate
     var table = new Table({

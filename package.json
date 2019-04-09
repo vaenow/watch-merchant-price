@@ -13,6 +13,7 @@
     "chalk": "^2.4.1",
     "cli-table-redemption": "^1.0.1",
     "cli-table2": "^0.2.0",
+    "lodash": "^4.17.11",
     "moment": "^2.23.0"
   }
 }
